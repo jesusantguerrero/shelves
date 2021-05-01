@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Potta+One&display=swap');
+
+.login-container {
+    background-image: url("./zen.jpg");
+}
+
+.shelves {
+    font-family: 'Potta One', cursive;
+}

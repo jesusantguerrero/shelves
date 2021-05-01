@@ -24,6 +24,17 @@ const routes = [
       requiresAuth: false,
     },
   },
+  {
+    path: '/register',
+    component: Login,
+    name: 'register',
+    props: {
+      mode: 'register'
+    },
+    meta: {
+      requiresAuth: false,
+    },
+  },
 ];
 
 const myRouter = createRouter({
@@ -32,7 +43,7 @@ const myRouter = createRouter({
 });
 
 myRouter.beforeEach(async (to, from, next) => {
-  const user = await isAuthenticated();
+  const user = null;
   if (to.meta.requiresAuth !== false && !user) {
     next({name: 'login'});
   } else if (to.meta.requiresAuth == false && user) {

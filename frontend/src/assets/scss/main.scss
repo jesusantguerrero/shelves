@@ -1,0 +1,36 @@
+@import "./base.scss";
+
+
+html {
+    background: #f8f8f8
+}
+
+.ic-scroller {
+    &::-webkit-scrollbar-thumb {
+        background-color: transparentize($color: #000000, $amount: 0.7);
+        border-radius: 4px;
+
+        &:hover {
+            background-color: transparentize($color: #000000, $amount: 0.7);
+        }
+    }
+
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        width: 8px;
+        height: 10px;
+    }
+
+    &-slim {
+        transition: all ease .3s;
+        &::-webkit-scrollbar {
+            height: 0;
+        }
+
+        &:hover {
+            &::-webkit-scrollbar {
+                height: 3px;
+            }
+        }
+    }
+}

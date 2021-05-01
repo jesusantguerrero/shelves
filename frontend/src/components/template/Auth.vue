@@ -1,12 +1,12 @@
 <template>
     <div class="login-box">
-        <div class="form-signin">
+        <div class="login-box__form md:w-1/2 w-full px-12">
           <slot></slot>
         </div>
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 :root {
     --primary-color: blue;
 }
@@ -42,7 +42,7 @@
         height: 100%;
     }
 
-    form {
+    &__form {
         color: white;
         max-width: 450px;
         border-radius: 4px;
@@ -51,17 +51,18 @@
     }
 
     .btn-action {
-        @apply bg-green-600;
+        @apply bg-yellow-600;
         width: 100%;
         color: white;
         border: none;
         margin: 10px 0;
         transition: all ease 0.3s;
         border: 2px solid white;
-        height: 40px;
+        height: 47px;
+        font-weight: bold;
 
         &:hover {
-            @apply bg-green-500;
+            @apply bg-yellow-700;
         }
     }
 
@@ -115,19 +116,6 @@
     }
 }
 
-.splash-screen {
-    top: 0;
-    left: 0;
-    color: #fff;
-    background: var(--primary-color);
-    position: absolute;
-    height: 100vh;
-}
-
-.splash-logo {
-    width: 300px;
-}
-
 .form-group {
     margin: 15px 0;
 
@@ -151,30 +139,6 @@
 
     &:focus {
         outline: none;
-    }
-}
-
-@keyframes fadeSplash {
-    0% {
-        opacity: 1;
-    }
-    60% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes loading-circle {
-    0% {
-        transform: rotate(0deg);
-    }
-    60% {
-        transform: rotate(90deg);
-    }
-    100% {
-        transform: rotate(360deg);
     }
 }
 

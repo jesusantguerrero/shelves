@@ -1,6 +1,8 @@
 <template>
   <AuthTemplate>
-    <LoginForm></LoginForm>
+    <LoginForm  app-name="Shelves">
+
+    </LoginForm>
   </AuthTemplate>
 </template>
 

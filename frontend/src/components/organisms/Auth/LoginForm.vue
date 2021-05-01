@@ -1,8 +1,8 @@
 <template>
-  <form class="form-signin md:w-1/2 w-full px-12" @submit.prevent="loginUser">
+  <form @submit.prevent="loginUser">
       <div class="w-full flex justify-center items-center mb-20 sm:pt-20">
-          <div class="text-8xl text-center zen">
-              Zen.
+          <div class="text-6xl text-center brand-font">
+              {{ appName }}
           </div>
       </div>
 
@@ -71,22 +71,13 @@
           <i v-if="isLoading" class="fa fa-spinner fa-pulse ml-2"></i>
       </button>
 
-      <button
-          class="btn btn-action capitalize rounded-sm flex google-btn justify-center"
-          type="submit"
-          @click.prevent.stop="loginWithProvider('google')"
-      >
-          <img src="./../assets/btn_google_light.svg" alt="">
-          {{ modeLabel }} With Google
-      </button>
-
-      <div class="">
+      <div class="text-center">
           <div v-if="mode=='register'"> Already have an account?
               <router-link class="text-green-400 font-bold"  to="/login"> Login </router-link>
           </div>
 
             <div v-else> Dont have an account?
-              <router-link  to="/register" class="text-green-400 font-bold"> Create one </router-link>
+              <router-link  to="/register" class="text-yellow-400 font-bold"> Create one </router-link>
           </div>
       </div>
       <p class="copyrights pt-10">&copy; {{ currentYear }}</p>
@@ -94,11 +85,19 @@
 </template>
 
 <script>
+import { reactive, ref, computed, toRefs } from "vue";
+import { useRouter } from "vue-router"
+
 export default {
+  name: 'LoginForm',
   props: {
       mode: {
         type: String,
         default: "login"
+      },
+      appName: {
+        type: String,
+        default: 'Atmosphere'
       },
       isLoading: {
         type: Boolean,
@@ -109,8 +108,6 @@ export default {
     'submit'
   ],
   setup(props, { emit }) {
-    import { reactive, ref, computed, toRefs } from "vue";
-    import { useRouter } from "vue-router"
 
     const { mode } = toRefs(props)
     const isLoading = ref(false)
@@ -158,6 +155,13 @@ export default {
         return true
     }
 
+    return {
+      mode,
+      formData,
+      push,
+      loginUser,
+      currentYear
+    }
   }
 }
 </script>
