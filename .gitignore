@@ -110,3 +110,8 @@ $RECYCLE.BIN/
 # Others
 lib/
 data/
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
