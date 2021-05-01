@@ -97,18 +97,14 @@ export default {
       },
       appName: {
         type: String,
-        default: 'Atmosphere'
+        default: "Atmosphere"
       },
       isLoading: {
         type: Boolean,
         default: false
       }
   },
-  emits: [
-    'submit'
-  ],
   setup(props, { emit }) {
-
     const { mode } = toRefs(props)
     const isLoading = ref(false)
     const formData = reactive({
@@ -157,9 +153,11 @@ export default {
 
     return {
       mode,
+      modeLabel,
       formData,
       push,
       loginUser,
+      isConfirmationInvalid,
       currentYear
     }
   }
