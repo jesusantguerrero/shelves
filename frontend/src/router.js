@@ -2,6 +2,7 @@ import Feed from './pages/Feed.vue';
 import Login from './pages/Login.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
+import { getToken } from './services/auth';
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -10,6 +11,12 @@ const routes = [
   {
     path: '/feed',
     name: 'feed',
+    component: Feed,
+
+  },
+  {
+    path: '/feed',
+    name: 'genres',
     component: Feed,
 
   },
@@ -43,7 +50,7 @@ const myRouter = createRouter({
 });
 
 myRouter.beforeEach(async (to, from, next) => {
-  const user = null;
+  const user = await localCurrentUser();
   if (to.meta.requiresAuth !== false && !user) {
     next({name: 'login'});
   } else if (to.meta.requiresAuth == false && user) {
@@ -52,5 +59,11 @@ myRouter.beforeEach(async (to, from, next) => {
     next();
   }
 });
+
+
+async function localCurrentUser() {
+  const token = await getToken();
+  return  token;
+}
 
 export default myRouter;

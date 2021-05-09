@@ -13,6 +13,7 @@
           <p :class="{ control: true }">
               <input
                   v-model.trim="formData.email"
+                  id="test-email"
                   class="form-control input"
                   :class="{ 'border-red-400 border-2': false }"
                   name="email"
@@ -30,7 +31,7 @@
           <p :class="{ control: true }">
               <input
                   type="password"
-                  id="password"
+                  id="test-password"
                   v-model="formData.password"
                   class="form-control input"
                   :class="{ 'border-red-400 border-2': false }"
@@ -64,8 +65,10 @@
 
       <button
           class="btn btn-action capitalize rounded-sm"
-          type="submit"
+          type="button"
+          id="test-submit"
           :disabled="isConfirmationInvalid"
+          @click="loginUser()"
       >
           {{ mode }}
           <i v-if="isLoading" class="fa fa-spinner fa-pulse ml-2"></i>
@@ -105,8 +108,7 @@ export default {
       }
   },
   setup(props, { emit }) {
-    const { mode } = toRefs(props)
-    const isLoading = ref(false)
+    const { mode, isLoading } = toRefs(props)
     const formData = reactive({
         email: '',
         password: '',
@@ -132,14 +134,10 @@ export default {
     const { push } = useRouter()
 
     const loginUser = () => {
-
         if (!validateRegistration()) {
             return
         }
 
-        const loginFunction = mode.value == 'login' ? login : register;
-        isLoading.value = true;
-        emit('update:isLoading', true)
         emit('submit', {...formData})
     }
 
