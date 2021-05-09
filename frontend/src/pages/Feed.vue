@@ -2,7 +2,7 @@
   <FeedTemplate mainTitle="Feed" leftTitle="By Genres" rightTitle="My List">
     <template #topBooks>
       <div>
-        <div class="flex space-x-5">
+        <div class="flex space-x-5 overflow-auto">
           <shelve-volume
             v-for="volume in volumes"
             :key="volume.id"
@@ -13,19 +13,10 @@
         <div class="">
           <SectionHeader title="Genres" linkLabel="More" :linkRoute="{name: 'genres'}" class="mb-2" />
 
-          <div class="grid grid-cols-2 grid-rows-2 gap-5">
-            <div class="h-16 w-36 bg-gray-300 flex justify-center items-center">
-               Action and Adventure
-            </div>
-            <div class="w-36 h-16 bg-gray-300 flex justify-center items-center">
-               Science Fiction
-            </div>
-            <div class="w-36 h-16 bg-gray-300 flex justify-center items-center">
-               Romance
-            </div>
-            <div class="w-36 h-16 bg-gray-300 flex justify-center items-center">
-               Young Adult
-            </div>
+          <div class="overflow-auto">
+            <div class="grid grid-rows-2 grid-flow-col gap-5">
+              <genre-card :title="genre" v-for="genre in genres" :key="genre"/>
+            </div> 
           </div>
 
         </div>
@@ -33,7 +24,7 @@
     </template>
 
     <template #byCategory>
-      <div class="flex space-x-5 overflow-hidden">
+      <div class="flex space-x-5 overflow-auto">
         <shelve-volume
           v-for="volume in volumes"
           :key="volume.id"
@@ -55,6 +46,7 @@
 </template>
 
 <script>
+import GenreCard from '../components/molecules/GenreCard.vue';
 import SectionHeader from '../components/molecules/SectionHeader.vue';
 import ShelveVolume from '../components/organisms/Volume.vue';
 import FeedTemplate from "../components/template/Feed.vue";
@@ -65,6 +57,7 @@ export default {
     FeedTemplate,
     ShelveVolume,
     SectionHeader,
+    GenreCard,
   },
   setup() {
     return {
@@ -160,6 +153,7 @@ export default {
           },
         },
       ],
+      genres: ['Action and Adventure', 'Science Fiction', 'Young Adult', 'Romance', 'Horror', 'Historical', 'Religion And Mitology', 'Supernatural', 'Health And Fitness', 'Westerns', 'Social Science', 'Literary', 'Mystery & Detective', 'Short Stories', 'Fantasy', 'Drama', 'Human Science', 'Humorous', 'Biography & Autpbiography', 'Science & Techs', 'War', 'Travel']
     };
   },
 };

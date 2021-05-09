@@ -5,12 +5,13 @@
       <slot name="topBooks"></slot>
     </div>
 
-    <div class="flex w-full">
-      <div class="w-6/12 pr-5">
+    <div class="w-full md:flex">
+      <div class="w-full md:w-6/12 md:pr-5">
         <section-header :title="leftTitle" :linkRoute="{name: 'feed'}" linkLabel="More" class="mb-2"/>
         <slot name="byCategory"></slot>
       </div>
-      <div class="w-6/12 pl-5">
+
+      <div class="w-full md:w-6/12 md:pl-5">
         <section-header :title="rightTitle" :linkRoute="{name: 'feed'}" linkLabel="More" class="mb-2"/>
         <slot name="myReads"></slot>
       </div>
